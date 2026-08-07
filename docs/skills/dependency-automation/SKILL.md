@@ -1,7 +1,7 @@
 ---
 name: dependency-automation
 version: "1.0"
-last_updated: 2026-08-06
+last_updated: 2026-08-07
 id: dependency-automation
 one_line_purpose: Review Renovate configuration and automated dependency updates.
 entry_point: docs/skills/dependency-automation/SKILL.md
@@ -19,7 +19,6 @@ metadata:
   type: procedure
   source-of-truth:
     - renovate.json
-    - .github/renovate.json5
     - .github/workflows/renovate-automerge.yml
 ---
 
@@ -60,6 +59,13 @@ Read configuration, validate it, and preserve the configured auth model.
 ## Red Flags
 
 - Adding tokens or documenting rules absent from source.
+- Adding a second Renovate config file. Renovate stops at the first config
+  file it finds in its fixed resolution order (`renovate.json` →
+  `renovate.jsonc` → `renovate.json5` → `.github/renovate.json` →
+  `.github/renovate.jsonc` → `.github/renovate.json5`); a root `renovate.json`
+  silently shadows any `.github/renovate*` file and CI path filters scoped to
+  the shadowed file never validate the config actually in effect (#1006).
+  Keep exactly one canonical file — the repo root `renovate.json`.
 
 ## Verification
 

@@ -6,14 +6,12 @@ on:
     branches-ignore:
       - main
     paths:
-      - ".github/renovate.json5"
-      - ".github/workflows/renovate.yml"
+      - "renovate.json"
   push:
     branches:
       - main
     paths:
-      - ".github/renovate.json5"
-      - ".github/workflows/renovate.yml"
+      - "renovate.json"
 
 permissions: {}
 
